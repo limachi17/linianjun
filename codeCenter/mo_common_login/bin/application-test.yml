@@ -1,0 +1,8 @@
+spring:
+  application.name: moxian-test
+  main.showBanner: false
+server.port: 8889
+
+redis.config:
+  host: 127.0.0.1
+  port: 6379

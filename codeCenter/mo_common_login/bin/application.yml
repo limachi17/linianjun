@@ -1,0 +1,96 @@
+spring.application.name: moxian
+server.port: 8887
+management.contextPath: /admin
+spring.jmx.enabled: false
+
+     
+#spring.jpa.database-platform: org.hibernate.dialect.HSQLDialect
+spring.jpa.database-platform: org.hibernate.dialect.MySQLDialect
+spring.jpa.show-sql: false
+spring.jpa.hibernate.ddl-auto: update
+spring.jpa.properties.hibernate.format_sql: false
+ 
+logging.file: moxian.log
+
+admin:
+  username: admin
+  password: secret
+
+webClient.connectionPool:
+  maxTotal: 100
+  defaultMaxPerRoute: 20
+  
+project.warfile: 
+  version: /m1/*
+  
+
+spring.profiles.active: beta
+
+---
+spring:
+  profiles: cn
+spring.ds.moxian:
+  url: jdbc:mysql://172.16.1.29:3306/moxian
+  username: moxian
+  password: rldb123
+  jndi: java:comp/env/login/jndi/mxds
+spring.redis.moxian:
+  databaseIndex: 0
+  host: 172.16.1.36
+  port: 6380
+  usePool: true
+thrift.server.config:
+  host: 172.16.1.35  
+  port: 7922
+  maxWorkerThreads: 500
+ 
+---
+spring:
+  profiles: dev
+spring.ds.moxian:
+  url: jdbc:mysql://172.16.1.95:3306/user
+  username: mxuser
+  password: mxuser123 
+  jndi: java:comp/env/login/jndi/mxds
+spring.redis.moxian:
+  host: 172.16.1.92
+  port: 6379
+  databaseIndex: 0
+  usePool: true
+thrift.server.config:
+  host: 172.16.1.71  
+  port: 7922
+  maxWorkerThreads: 500
+
+---
+spring:
+  profiles: localdev
+spring.ds.moxian:
+  url: jdbc:mysql://172.16.1.95:3306/user?autoReconnect=true
+  username: devcha
+  password: mxdev123 
+  jndi: java:comp/env/login/jndi/mxds
+spring.redis.moxian:
+  host: 172.16.1.92
+  port: 6379
+thrift.server.config:
+  host: 127.0.0.1
+  port: 7902 
+  
+---
+spring:
+  profiles: beta
+spring.ds.moxian:
+  url: jdbc:mysql://192.168.11.71:3306/moxian
+  username: moxian
+  password: rldb123 
+  jndi: java:comp/env/login/jndi/mxds
+spring.redis.moxian:
+  host: 192.168.11.71
+  port: 6380
+  databaseIndex: 0
+  usePool: true
+thrift.server.config:
+  host: 192.168.11.79 
+  port: 7922
+  maxWorkerThreads: 500
