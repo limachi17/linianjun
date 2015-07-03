@@ -1,0 +1,47 @@
+spring.application.name: moxian
+server.port: 8888
+management.contextPath: /admin
+
+# Configuration for HSQL
+#spring.ds.moxian:
+#  url: jdbc:hsqldb:hsql://localhost/moxian
+#  username: sa
+#  password:
+#  jndi: java:comp/env/jdbc/mxds
+
+# Configuration for MySQL
+spring.ds.moxian:
+  url: jdbc:mysql://172.16.1.95:3306/sensitiveword
+  username: devcha
+  password: mxdev123
+  jndi: java:comp/env/jdbc/mxds
+
+#spring.jpa.database-platform: org.hibernate.dialect.HSQLDialect
+spring.jpa.database-platform: org.hibernate.dialect.MySQLDialect
+spring.jpa.show-sql: false
+spring.jpa.hibernate.ddl-auto: update
+spring.jpa.properties.hibernate.format_sql: false
+
+logging.file: moxian.log
+
+admin:
+  username: admin
+  password: secret
+
+webClient.connectionPool:
+  maxTotal: 100
+  defaultMaxPerRoute: 20
+
+---
+spring:
+  profiles: local
+
+
+---
+spring:
+  profiles: dev
+
+---
+spring:
+  profiles: production
+
